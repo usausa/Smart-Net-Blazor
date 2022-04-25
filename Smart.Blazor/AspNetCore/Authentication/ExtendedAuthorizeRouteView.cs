@@ -1,7 +1,5 @@
 namespace Smart.AspNetCore.Authentication;
 
-using System.Diagnostics.CodeAnalysis;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -12,10 +10,10 @@ using RouteData = Microsoft.AspNetCore.Components.RouteData;
 public sealed class ExtendedAuthorizeRouteView : RouteView
 {
     private static readonly RenderFragment<AuthenticationState> DefaultNotAuthorizedContent
-        = _ => builder => builder.AddContent(0, "Not authorized");
+        = static _ => builder => builder.AddContent(0, "Not authorized");
 
     private static readonly RenderFragment DefaultAuthorizingContent
-        = builder => builder.AddContent(0, "Authorizing...");
+        = static builder => builder.AddContent(0, "Authorizing...");
 
     private readonly RenderFragment renderAuthorizeRouteViewCoreDelegate;
     private readonly RenderFragment<AuthenticationState> renderAuthorizedDelegate;
@@ -41,8 +39,7 @@ public sealed class ExtendedAuthorizeRouteView : RouteView
     public object? Resource { get; set; }
 
     [Parameter]
-    [AllowNull]
-    public Type NotAuthorizedLayout { get; set; }
+    public Type NotAuthorizedLayout { get; set; } = default!;
 
     [CascadingParameter]
     private Task<AuthenticationState>? ExistingCascadedAuthenticationState { get; set; }
