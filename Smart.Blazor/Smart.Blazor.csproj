@@ -6,7 +6,11 @@
     <CodeAnalysisRuleSet>..\Smart.Blazor.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-    <PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <PropertyGroup>
     <PackageId>Usa.Smart.Blazor</PackageId>
     <Title>Smart.Blazor</Title>
     <Description>Smart Blazor library</Description>
@@ -20,6 +24,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
     <PackageReference Include="Usa.Smart.Core" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
   </ItemGroup>
 
 </Project>
