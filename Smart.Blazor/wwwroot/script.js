@@ -10,7 +10,7 @@ var Smart;
 
     smart.saveAsFile = (filename, contentType, base64) => {
         const link = document.createElement("a");
-        link.href = `data:${contentType};base64,${base64}`;;
+        link.href = `data:${contentType};base64,${base64}`;
         link.target = "_self";
         link.download = filename;
         link.click();
