@@ -1,0 +1,19 @@
+﻿@if (Value)
+{
+    @ChildContent
+}
+else if (ElseContent is not null)
+{
+    @ElseContent
+}
+
+@code {
+    [Parameter]
+    public bool Value { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? ElseContent { get; set; }
+}

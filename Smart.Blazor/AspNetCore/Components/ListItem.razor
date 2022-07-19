@@ -1,0 +1,38 @@
+﻿@typeparam TElement
+
+@if (Items is null)
+{
+    @NullContent
+}
+else if (Items.Count == 0)
+{
+    @EmptyContent
+}
+else if (ItemTemplate is not null)
+{
+    foreach (var item in Items)
+    {
+        @ItemTemplate(item)
+    }
+}
+else if (ListContent is not null)
+{
+    @ListContent(Items)
+}
+
+@code {
+    [Parameter]
+    public List<TElement>? Items { get; set; }
+
+    [Parameter]
+    public RenderFragment<TElement>? ItemTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<List<TElement>>? ListContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? NullContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? EmptyContent { get; set; }
+}

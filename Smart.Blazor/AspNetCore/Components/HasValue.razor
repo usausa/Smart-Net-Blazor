@@ -1,0 +1,21 @@
+﻿@typeparam TElement
+
+@if (Value is not null)
+{
+    @ChildContent(Value)
+}
+else if (NullContent is not null)
+{
+    @NullContent
+}
+
+@code {
+    [Parameter]
+    public TElement Value { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment<TElement> ChildContent { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? NullContent { get; set; }
+}
