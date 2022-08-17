@@ -1,0 +1,48 @@
+@using System.Linq.Expressions
+@using Microsoft.AspNetCore.Components.Forms
+@typeparam TElement
+@implements IDisposable
+
+@if (EditContext?.GetValidationMessages(fieldIdentifier).Any() ?? false)
+{
+    @ChildContent
+}
+
+@code {
+    private FieldIdentifier fieldIdentifier = default!;
+
+    [CascadingParameter]
+    private EditContext? EditContext { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = default!;
+
+    [EditorRequired]
+    [Parameter]
+    public Expression<Func<TElement>> For { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        if (EditContext is null)
+        {
+            throw new InvalidOperationException($"{nameof(EditContext)} is required.");
+        }
+
+        fieldIdentifier = FieldIdentifier.Create(For);
+
+        EditContext.OnFieldChanged += EditContextOnOnFieldChanged;
+    }
+
+    public void Dispose()
+    {
+        if (EditContext is not null)
+        {
+            EditContext.OnFieldChanged -= EditContextOnOnFieldChanged;
+        }
+    }
+
+    private void EditContextOnOnFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+}
