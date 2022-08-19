@@ -27,11 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="AspNetCore\Components\Loop.razor" />
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="AspNetCore\Components\Loop.razor" />
     <None Include="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="AspNetCore\Components\Loop.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="AspNetCore\Components\Loop.razor" />
   </ItemGroup>
 
 </Project>

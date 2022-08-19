@@ -1,0 +1,23 @@
+@{
+    var index = Start;
+    for (var i = 0; i < Count; i++)
+    {
+        @ChildContent(index)
+        index += Step;
+    }
+}
+
+@code {
+    [Parameter]
+    public int Start { get; set; }
+
+    [Parameter]
+    public int Step { get; set; } = 1;
+
+    [EditorRequired]
+    [Parameter]
+    public int Count { get; set; }
+
+    [Parameter]
+    public RenderFragment<int> ChildContent { get; set; } = default!;
+}
