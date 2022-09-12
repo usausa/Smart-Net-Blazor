@@ -1,4 +1,4 @@
-﻿@typeparam TElement
+@typeparam TElement
 
 @if (Items is null)
 {
@@ -22,13 +22,13 @@ else if (ListContent is not null)
 
 @code {
     [Parameter]
-    public List<TElement>? Items { get; set; }
+    public IReadOnlyList<TElement>? Items { get; set; }
 
     [Parameter]
     public RenderFragment<TElement>? ItemTemplate { get; set; }
 
     [Parameter]
-    public RenderFragment<List<TElement>>? ListContent { get; set; }
+    public RenderFragment<IReadOnlyList<TElement>>? ListContent { get; set; }
 
     [Parameter]
     public RenderFragment? NullContent { get; set; }
