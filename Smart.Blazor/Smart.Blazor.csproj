@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <RootNamespace>Smart</RootNamespace>
     <CodeAnalysisRuleSet>..\Smart.Blazor.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -18,29 +18,28 @@
     <PackageTags>smart aspnetcore blazor</PackageTags>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
-    <PackageReference Include="Usa.Smart.Core" Version="2.1.0" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.11" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="AspNetCore\Components\Loop.razor" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
+    <PackageReference Include="Usa.Smart.Core" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="AspNetCore\Components\Loop.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="AspNetCore\Components\Loop.razor" />
   </ItemGroup>
 
 </Project>
