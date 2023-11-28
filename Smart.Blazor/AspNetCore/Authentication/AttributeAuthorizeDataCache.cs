@@ -32,7 +32,7 @@ internal static class AttributeAuthorizeDataCache
 
             if (allAttributes[i] is IAuthorizeData authorizeData)
             {
-                list ??= new();
+                list ??= [];
                 list.Add(authorizeData);
             }
         }

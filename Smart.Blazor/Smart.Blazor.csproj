@@ -14,7 +14,6 @@
     <PackageId>Usa.Smart.Blazor</PackageId>
     <Title>Smart.Blazor</Title>
     <Description>Smart Blazor library</Description>
-    <Summary>Smart Blazor library</Summary>
     <PackageTags>smart aspnetcore blazor</PackageTags>
   </PropertyGroup>
 
