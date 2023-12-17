@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-public class CustomValidator : ComponentBase
+public sealed class CustomValidator : ComponentBase
 {
     private ValidationMessageStore? messageStore;
 
