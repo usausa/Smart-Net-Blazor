@@ -10,7 +10,7 @@ using RouteData = Microsoft.AspNetCore.Components.RouteData;
 public sealed class ExtendedAuthorizeRouteView : RouteView
 {
     private static readonly RenderFragment<AuthenticationState> DefaultNotAuthorizedContent
-        = static _ => builder => builder.AddContent(0, "Not authorized");
+        = static _ => static builder => builder.AddContent(0, "Not authorized");
 
     private static readonly RenderFragment DefaultAuthorizingContent
         = static builder => builder.AddContent(0, "Authorizing...");
