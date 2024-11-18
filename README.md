@@ -1,3 +1,3 @@
 # Smart.Blazor .NET - Blazor support library
 
-[![NuGet Badge](https://buildstats.info/nuget/Usa.Smart.Blazor)](https://www.nuget.org/packages/Usa.Smart.Blazor/)
+[![NuGet](https://img.shields.io/nuget/v/Usa.Smart.Blazor.svg)](https://www.nuget.org/packages/Usa.Smart.Blazor)
