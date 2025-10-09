@@ -1,9 +1,9 @@
 namespace Smart.AspNetCore.Components;
 
+using System.Linq.Expressions;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-
-using System.Linq.Expressions;
 
 public sealed class CustomValidator : ComponentBase
 {
