@@ -1,5 +1,7 @@
 namespace Smart.AspNetCore.Authentication;
 
+using System.Diagnostics.CodeAnalysis;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -69,6 +71,8 @@ public sealed class ExtendedAuthorizeRouteView : RouteView
         builder.CloseComponent();
     }
 
+    [UnconditionalSuppressMessage("Trimming", "IL2111", Justification = "LayoutView.Layout is set via RenderTreeBuilder which handles DynamicallyAccessedMembers correctly at runtime.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2110", Justification = "LayoutView internal field with DynamicallyAccessedMembers is accessed via RenderTreeBuilder at runtime.")]
     private void RenderContentInDefaultLayout(RenderTreeBuilder builder, RenderFragment content)
     {
         builder.OpenComponent<LayoutView>(0);
@@ -77,6 +81,8 @@ public sealed class ExtendedAuthorizeRouteView : RouteView
         builder.CloseComponent();
     }
 
+    [UnconditionalSuppressMessage("Trimming", "IL2111", Justification = "LayoutView.Layout is set via RenderTreeBuilder which handles DynamicallyAccessedMembers correctly at runtime.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2110", Justification = "LayoutView internal field with DynamicallyAccessedMembers is accessed via RenderTreeBuilder at runtime.")]
     private void RenderContentInNotAuthorizedLayout(RenderTreeBuilder builder, RenderFragment content)
     {
         builder.OpenComponent<LayoutView>(0);

@@ -1,6 +1,7 @@
 namespace Smart.AspNetCore.Authentication;
 
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,8 @@ internal static class AttributeAuthorizeDataCache
     private static readonly ConcurrentDictionary<Type, IAuthorizeData[]?> Cache = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IAuthorizeData[]? GetAuthorizeDataForType(Type type)
+    public static IAuthorizeData[]? GetAuthorizeDataForType(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         if (!Cache.TryGetValue(type, out var result))
         {
@@ -21,7 +23,8 @@ internal static class AttributeAuthorizeDataCache
         return result;
     }
 
-    private static IAuthorizeData[]? ComputeAuthorizeDataForType(Type type)
+    private static IAuthorizeData[]? ComputeAuthorizeDataForType(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         var allAttributes = type.GetCustomAttributes(inherit: true);
         List<IAuthorizeData>? list = null;

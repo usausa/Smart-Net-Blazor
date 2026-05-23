@@ -1,5 +1,6 @@
 namespace Smart.AspNetCore.Components;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 using Microsoft.AspNetCore.Components;
@@ -25,6 +26,8 @@ public sealed class CustomValidator : ComponentBase
         CurrentEditContext.OnFieldChanged += (_, e) => messageStore?.Clear(e.FieldIdentifier);
     }
 
+    [RequiresDynamicCode("Expression trees are not supported in AOT environments. Use the FieldIdentifier overload instead.")]
+    [RequiresUnreferencedCode("Expression trees are not supported in trimmed environments. Use the FieldIdentifier overload instead.")]
     public void DisplayError<TField>(Expression<Func<TField>> expression, string error)
     {
         if ((CurrentEditContext is not null) && (messageStore is not null))
@@ -35,11 +38,33 @@ public sealed class CustomValidator : ComponentBase
         }
     }
 
+    public void DisplayError(FieldIdentifier fieldIdentifier, string error)
+    {
+        if ((CurrentEditContext is not null) && (messageStore is not null))
+        {
+            messageStore.Add(fieldIdentifier, error);
+
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
+    }
+
+    [RequiresDynamicCode("Expression trees are not supported in AOT environments. Use the FieldIdentifier overload instead.")]
+    [RequiresUnreferencedCode("Expression trees are not supported in trimmed environments. Use the FieldIdentifier overload instead.")]
     public void DisplayErrors<TField>(Expression<Func<TField>> expression, IEnumerable<string> errors)
     {
         if ((CurrentEditContext is not null) && (messageStore is not null))
         {
             messageStore.Add(FieldIdentifier.Create(expression), errors);
+
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
+    }
+
+    public void DisplayErrors(FieldIdentifier fieldIdentifier, IEnumerable<string> errors)
+    {
+        if ((CurrentEditContext is not null) && (messageStore is not null))
+        {
+            messageStore.Add(fieldIdentifier, errors);
 
             CurrentEditContext.NotifyValidationStateChanged();
         }
