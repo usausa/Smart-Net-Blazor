@@ -20,18 +20,20 @@
             throw new InvalidOperationException($"{nameof(EditContext)} is required.");
         }
 
-        EditContext.OnFieldChanged += EditContextOnOnFieldChanged;
+        EditContext.OnFieldChanged += HandleStateChanged;
+        EditContext.OnValidationStateChanged += HandleStateChanged;
     }
 
     public void Dispose()
     {
         if (EditContext is not null)
         {
-            EditContext.OnFieldChanged -= EditContextOnOnFieldChanged;
+            EditContext.OnFieldChanged -= HandleStateChanged;
+            EditContext.OnValidationStateChanged -= HandleStateChanged;
         }
     }
 
-    private void EditContextOnOnFieldChanged(object? sender, FieldChangedEventArgs e)
+    private void HandleStateChanged(object? sender, EventArgs e)
     {
         StateHasChanged();
     }

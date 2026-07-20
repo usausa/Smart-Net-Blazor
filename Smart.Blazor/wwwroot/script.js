@@ -8,32 +8,28 @@ var Smart;
         }
     }
 
-    smart.saveAsFile = (filename, contentType, base64) => {
+    smart.saveAsFile = async (filename, contentType, stream) => {
+        const buffer = await stream.arrayBuffer();
+        const blob = new Blob([buffer], { type: contentType });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = `data:${contentType};base64,${base64}`;
+        link.href = url;
         link.target = "_self";
         link.download = filename;
         link.click();
         link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 0);
     }
 
-    smart.openNewWindow = (contentType, base64) => {
-        const sliceSize = 65536;
-
-        const data = atob(base64);
-        const bytes = [];
-        for (let offset = 0; offset < data.length; offset += sliceSize) {
-            const slice = data.slice(offset, offset + sliceSize);
-            const array = new Array(slice.length);
-            for (let i = 0; i < slice.length; i++) {
-                array[i] = slice.charCodeAt(i);
-            }
-
-            bytes.push(new Uint8Array(array));
-        }
-
-        const blob = new Blob(bytes, { type: contentType });
+    smart.openNewWindow = async (contentType, stream) => {
+        const buffer = await stream.arrayBuffer();
+        const blob = new Blob([buffer], { type: contentType });
         const url = URL.createObjectURL(blob);
-        window.open(url);
+        const win = window.open(url);
+        if (win) {
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        } else {
+            URL.revokeObjectURL(url);
+        }
     }
 })(Smart || (Smart = {}));

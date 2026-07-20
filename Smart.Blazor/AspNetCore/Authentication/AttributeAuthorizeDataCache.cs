@@ -12,16 +12,8 @@ internal static class AttributeAuthorizeDataCache
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IAuthorizeData[]? GetAuthorizeDataForType(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
-    {
-        if (!Cache.TryGetValue(type, out var result))
-        {
-            result = ComputeAuthorizeDataForType(type);
-            Cache[type] = result;
-        }
-
-        return result;
-    }
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type) =>
+        Cache.GetOrAdd(type, ComputeAuthorizeDataForType);
 
     private static IAuthorizeData[]? ComputeAuthorizeDataForType(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)

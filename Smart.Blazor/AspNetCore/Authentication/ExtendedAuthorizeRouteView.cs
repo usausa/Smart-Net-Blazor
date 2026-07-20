@@ -41,7 +41,8 @@ public sealed class ExtendedAuthorizeRouteView : RouteView
     public object? Resource { get; set; }
 
     [Parameter]
-    public Type NotAuthorizedLayout { get; set; } = default!;
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
+    public Type? NotAuthorizedLayout { get; set; }
 
     [CascadingParameter]
     private Task<AuthenticationState>? ExistingCascadedAuthenticationState { get; set; }
@@ -86,7 +87,7 @@ public sealed class ExtendedAuthorizeRouteView : RouteView
     private void RenderContentInNotAuthorizedLayout(RenderTreeBuilder builder, RenderFragment content)
     {
         builder.OpenComponent<LayoutView>(0);
-        builder.AddAttribute(1, nameof(LayoutView.Layout), NotAuthorizedLayout);
+        builder.AddAttribute(1, nameof(LayoutView.Layout), NotAuthorizedLayout ?? DefaultLayout);
         builder.AddAttribute(2, nameof(LayoutView.ChildContent), content);
         builder.CloseComponent();
     }

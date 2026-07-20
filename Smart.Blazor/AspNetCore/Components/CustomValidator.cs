@@ -6,25 +6,58 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-public sealed class CustomValidator : ComponentBase
+public sealed class CustomValidator : ComponentBase, IDisposable
 {
     private ValidationMessageStore? messageStore;
+
+    private EditContext? subscribedEditContext;
 
     [CascadingParameter]
     private EditContext? CurrentEditContext { get; set; }
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         if (CurrentEditContext is null)
         {
             throw new InvalidOperationException($"{nameof(EditContext)} is required.");
         }
 
-        messageStore = new(CurrentEditContext);
+        if (ReferenceEquals(CurrentEditContext, subscribedEditContext))
+        {
+            return;
+        }
 
-        CurrentEditContext.OnValidationRequested += (_, _) => messageStore?.Clear();
-        CurrentEditContext.OnFieldChanged += (_, e) => messageStore?.Clear(e.FieldIdentifier);
+        Unsubscribe();
+
+        messageStore = new(CurrentEditContext);
+        subscribedEditContext = CurrentEditContext;
+
+        CurrentEditContext.OnValidationRequested += HandleValidationRequested;
+        CurrentEditContext.OnFieldChanged += HandleFieldChanged;
     }
+
+    public void Dispose()
+    {
+        Unsubscribe();
+    }
+
+    private void Unsubscribe()
+    {
+        if (subscribedEditContext is not null)
+        {
+            subscribedEditContext.OnValidationRequested -= HandleValidationRequested;
+            subscribedEditContext.OnFieldChanged -= HandleFieldChanged;
+            subscribedEditContext = null;
+        }
+
+        messageStore = null;
+    }
+
+    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs e) =>
+        messageStore?.Clear();
+
+    private void HandleFieldChanged(object? sender, FieldChangedEventArgs e) =>
+        messageStore?.Clear(e.FieldIdentifier);
 
     [RequiresDynamicCode("Expression trees are not supported in AOT environments. Use the FieldIdentifier overload instead.")]
     [RequiresUnreferencedCode("Expression trees are not supported in trimmed environments. Use the FieldIdentifier overload instead.")]

@@ -30,18 +30,28 @@
 
         fieldIdentifier = FieldIdentifier.Create(For);
 
-        EditContext.OnFieldChanged += EditContextOnOnFieldChanged;
+        EditContext.OnFieldChanged += HandleFieldChanged;
+        EditContext.OnValidationStateChanged += HandleValidationStateChanged;
     }
 
     public void Dispose()
     {
         if (EditContext is not null)
         {
-            EditContext.OnFieldChanged -= EditContextOnOnFieldChanged;
+            EditContext.OnFieldChanged -= HandleFieldChanged;
+            EditContext.OnValidationStateChanged -= HandleValidationStateChanged;
         }
     }
 
-    private void EditContextOnOnFieldChanged(object? sender, FieldChangedEventArgs e)
+    private void HandleFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        if (e.FieldIdentifier.Equals(fieldIdentifier))
+        {
+            StateHasChanged();
+        }
+    }
+
+    private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
     {
         StateHasChanged();
     }

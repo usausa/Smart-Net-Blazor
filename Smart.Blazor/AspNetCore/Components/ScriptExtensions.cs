@@ -7,9 +7,17 @@ public static class ScriptExtensions
     public static ValueTask SetFocus(this IJSRuntime runtime, string id) =>
         runtime.InvokeVoidAsync("Smart.setFocus", id);
 
-    public static ValueTask<string> SaveAsFile(this IJSRuntime runtime, string filename, string contentType, byte[] bytes) =>
-        runtime.InvokeAsync<string>("Smart.saveAsFile", filename, contentType, Convert.ToBase64String(bytes));
+    public static async ValueTask SaveAsFile(this IJSRuntime runtime, string filename, string contentType, byte[] bytes)
+    {
+        using var stream = new MemoryStream(bytes);
+        using var streamReference = new DotNetStreamReference(stream, leaveOpen: true);
+        await runtime.InvokeVoidAsync("Smart.saveAsFile", filename, contentType, streamReference).ConfigureAwait(false);
+    }
 
-    public static ValueTask<string> OpenNewWindow(this IJSRuntime runtime, string contentType, byte[] bytes) =>
-        runtime.InvokeAsync<string>("Smart.openNewWindow", contentType, Convert.ToBase64String(bytes));
+    public static async ValueTask OpenNewWindow(this IJSRuntime runtime, string contentType, byte[] bytes)
+    {
+        using var stream = new MemoryStream(bytes);
+        using var streamReference = new DotNetStreamReference(stream, leaveOpen: true);
+        await runtime.InvokeVoidAsync("Smart.openNewWindow", contentType, streamReference).ConfigureAwait(false);
+    }
 }
