@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 public sealed class ConditionTest : BunitContext
 {
     [Fact]
-    public void RendersChildContent_WhenValueIsTrue()
+    public void RendersChildContentWhenValueIsTrue()
     {
         var cut = Render<Condition>(parameters => parameters
             .Add(static p => p.Value, true)
@@ -13,7 +13,7 @@ public sealed class ConditionTest : BunitContext
     }
 
     [Fact]
-    public void RendersElseContent_WhenValueIsFalse()
+    public void RendersElseContentWhenValueIsFalse()
     {
         var cut = Render<Condition>(parameters => parameters
             .Add(static p => p.Value, false)
@@ -24,7 +24,7 @@ public sealed class ConditionTest : BunitContext
     }
 
     [Fact]
-    public void RendersNothing_WhenValueIsFalseAndNoElseContent()
+    public void RendersNothingWhenValueIsFalseAndNoElseContent()
     {
         var cut = Render<Condition>(parameters => parameters
             .Add(static p => p.Value, false)

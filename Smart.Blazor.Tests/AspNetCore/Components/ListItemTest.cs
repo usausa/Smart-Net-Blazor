@@ -5,7 +5,7 @@ public sealed class ListItemTest : BunitContext
     private static readonly string[] Items = ["a", "b"];
 
     [Fact]
-    public void RendersNullContent_WhenItemsNull()
+    public void RendersNullContentWhenItemsNull()
     {
         var cut = Render<ListItem<string>>(parameters => parameters
             .Add(p => p.Items, null)
@@ -15,7 +15,7 @@ public sealed class ListItemTest : BunitContext
     }
 
     [Fact]
-    public void RendersEmptyContent_WhenItemsEmpty()
+    public void RendersEmptyContentWhenItemsEmpty()
     {
         var cut = Render<ListItem<string>>(parameters => parameters
             .Add(p => p.Items, Array.Empty<string>())
@@ -25,7 +25,7 @@ public sealed class ListItemTest : BunitContext
     }
 
     [Fact]
-    public void RendersItemTemplate_PerItem()
+    public void RendersItemTemplatePerItem()
     {
         var cut = Render<ListItem<string>>(parameters => parameters
             .Add(p => p.Items, Items)
@@ -35,7 +35,7 @@ public sealed class ListItemTest : BunitContext
     }
 
     [Fact]
-    public void RendersListContent_WhenNoItemTemplate()
+    public void RendersListContentWhenNoItemTemplate()
     {
         var cut = Render<ListItem<string>>(parameters => parameters
             .Add(p => p.Items, Items)

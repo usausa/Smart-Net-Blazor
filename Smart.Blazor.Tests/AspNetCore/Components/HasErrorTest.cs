@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Forms;
 public sealed class HasErrorTest : BunitContext
 {
     [Fact]
-    public async Task RendersChildContent_OnValidationStateChange()
+    public async Task RendersChildContentOnValidationStateChange()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);

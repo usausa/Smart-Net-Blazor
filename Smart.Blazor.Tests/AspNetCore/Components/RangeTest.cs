@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 public sealed class RangeTest : BunitContext
 {
     [Fact]
-    public void RendersSequence_FromZero()
+    public void RendersSequenceFromZero()
     {
         var cut = Render<Range>(parameters => parameters
             .Add(p => p.Count, 3)
@@ -13,7 +13,7 @@ public sealed class RangeTest : BunitContext
     }
 
     [Fact]
-    public void RendersSequence_WithStartAndStep()
+    public void RendersSequenceWithStartAndStep()
     {
         var cut = Render<Range>(parameters => parameters
             .Add(p => p.Start, 10)
@@ -25,7 +25,7 @@ public sealed class RangeTest : BunitContext
     }
 
     [Fact]
-    public void RendersNothing_WhenCountZero()
+    public void RendersNothingWhenCountZero()
     {
         var cut = Render<Range>(parameters => parameters
             .Add(p => p.Count, 0)

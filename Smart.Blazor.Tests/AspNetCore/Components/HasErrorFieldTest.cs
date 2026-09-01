@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components.Forms;
 public sealed class HasErrorFieldTest : BunitContext
 {
     [Fact]
-    public async Task RendersChildContent_OnValidationStateChange()
+    public async Task RendersChildContentOnValidationStateChange()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -28,7 +28,7 @@ public sealed class HasErrorFieldTest : BunitContext
     }
 
     [Fact]
-    public async Task ReRenders_OnlyWhenTargetFieldChanges()
+    public async Task ReRendersOnlyWhenTargetFieldChanges()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);

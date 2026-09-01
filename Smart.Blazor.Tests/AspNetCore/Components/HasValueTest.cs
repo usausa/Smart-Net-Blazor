@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 public sealed class HasValueTest : BunitContext
 {
     [Fact]
-    public void RendersChildContent_WhenValuePresent()
+    public void RendersChildContentWhenValuePresent()
     {
         var cut = Render<HasValue<string?>>(parameters => parameters
             .Add(p => p.Value, "hello")
@@ -13,7 +13,7 @@ public sealed class HasValueTest : BunitContext
     }
 
     [Fact]
-    public void RendersNullContent_WhenValueNull()
+    public void RendersNullContentWhenValueNull()
     {
         var cut = Render<HasValue<string?>>(parameters => parameters
             .Add(p => p.Value, null)
@@ -24,7 +24,7 @@ public sealed class HasValueTest : BunitContext
     }
 
     [Fact]
-    public void RendersNothing_WhenValueNullAndNoNullContent()
+    public void RendersNothingWhenValueNullAndNoNullContent()
     {
         var cut = Render<HasValue<string?>>(parameters => parameters
             .Add(p => p.Value, null)

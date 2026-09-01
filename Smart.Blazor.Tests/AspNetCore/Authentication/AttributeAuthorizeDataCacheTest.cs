@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 public sealed class AttributeAuthorizeDataCacheTest
 {
     [Fact]
-    public void ReturnsAuthorizeData_ForAuthorizedType()
+    public void ReturnsAuthorizeDataForAuthorizedType()
     {
         var result = AttributeAuthorizeDataCache.GetAuthorizeDataForType(typeof(AuthorizedType));
 
@@ -14,7 +14,7 @@ public sealed class AttributeAuthorizeDataCacheTest
     }
 
     [Fact]
-    public void ReturnsNull_ForAllowAnonymousType()
+    public void ReturnsNullForAllowAnonymousType()
     {
         var result = AttributeAuthorizeDataCache.GetAuthorizeDataForType(typeof(AnonymousType));
 
@@ -22,7 +22,7 @@ public sealed class AttributeAuthorizeDataCacheTest
     }
 
     [Fact]
-    public void ReturnsNull_ForTypeWithoutAuthorizeData()
+    public void ReturnsNullForTypeWithoutAuthorizeData()
     {
         var result = AttributeAuthorizeDataCache.GetAuthorizeDataForType(typeof(PlainType));
 
@@ -30,7 +30,7 @@ public sealed class AttributeAuthorizeDataCacheTest
     }
 
     [Fact]
-    public void CachesResult_ReturnsSameInstance()
+    public void CachesResultReturnsSameInstance()
     {
         var first = AttributeAuthorizeDataCache.GetAuthorizeDataForType(typeof(AuthorizedType));
         var second = AttributeAuthorizeDataCache.GetAuthorizeDataForType(typeof(AuthorizedType));

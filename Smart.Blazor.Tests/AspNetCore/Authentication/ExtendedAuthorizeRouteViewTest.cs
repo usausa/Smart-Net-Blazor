@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
 {
     [Fact]
-    public void NotAuthorized_FallsBackToDefaultLayout_WhenNotAuthorizedLayoutNotSet()
+    public void NotAuthorizedFallsBackToDefaultLayoutWhenNotAuthorizedLayoutNotSet()
     {
         AddAuthorization().SetNotAuthorized();
 
@@ -20,7 +20,7 @@ public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
     }
 
     [Fact]
-    public void NotAuthorized_UsesNotAuthorizedLayout_WhenSet()
+    public void NotAuthorizedUsesNotAuthorizedLayoutWhenSet()
     {
         AddAuthorization().SetNotAuthorized();
 

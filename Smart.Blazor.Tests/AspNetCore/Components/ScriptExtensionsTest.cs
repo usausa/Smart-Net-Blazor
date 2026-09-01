@@ -10,7 +10,7 @@ public sealed class ScriptExtensionsTest : BunitContext
     }
 
     [Fact]
-    public async Task SetFocus_InvokesJs()
+    public async Task SetFocusInvokesJs()
     {
         await JSInterop.JSRuntime.SetFocus("my-id");
 
@@ -19,7 +19,7 @@ public sealed class ScriptExtensionsTest : BunitContext
     }
 
     [Fact]
-    public async Task SaveAsFile_InvokesJsWithStreamReference()
+    public async Task SaveAsFileInvokesJsWithStreamReference()
     {
         await JSInterop.JSRuntime.SaveAsFile("file.txt", "text/plain", [1, 2, 3]);
 
@@ -30,7 +30,7 @@ public sealed class ScriptExtensionsTest : BunitContext
     }
 
     [Fact]
-    public async Task OpenNewWindow_InvokesJsWithStreamReference()
+    public async Task OpenNewWindowInvokesJsWithStreamReference()
     {
         await JSInterop.JSRuntime.OpenNewWindow("application/pdf", [1, 2, 3]);
 

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Forms;
 public sealed class CustomValidatorTest : BunitContext
 {
     [Fact]
-    public void DisplayError_WithExpression_AddsMessage()
+    public void DisplayErrorWithExpressionAddsMessage()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -18,7 +18,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void DisplayError_WithFieldIdentifier_AddsMessage()
+    public void DisplayErrorWithFieldIdentifierAddsMessage()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -30,7 +30,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void DisplayError_WithFieldName_AddsMessage()
+    public void DisplayErrorWithFieldNameAddsMessage()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -42,7 +42,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void DisplayErrors_AddsMultipleMessages()
+    public void DisplayErrorsAddsMultipleMessages()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -56,7 +56,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void ClearErrors_RemovesMessages()
+    public void ClearErrorsRemovesMessages()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -69,7 +69,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void FieldChanged_ClearsFieldMessages()
+    public void FieldChangedClearsFieldMessages()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -82,7 +82,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public void ValidationRequested_ClearsMessages()
+    public void ValidationRequestedClearsMessages()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -116,7 +116,7 @@ public sealed class CustomValidatorTest : BunitContext
     }
 
     [Fact]
-    public async Task Dispose_UnsubscribesFromEditContext()
+    public async Task DisposeUnsubscribesFromEditContext()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
