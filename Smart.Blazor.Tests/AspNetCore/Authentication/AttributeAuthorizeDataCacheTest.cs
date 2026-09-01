@@ -2,6 +2,7 @@ namespace Smart.AspNetCore.Authentication;
 
 using Microsoft.AspNetCore.Authorization;
 
+#pragma warning disable CA1034
 public sealed class AttributeAuthorizeDataCacheTest
 {
     [Fact]
@@ -46,3 +47,4 @@ public sealed class AttributeAuthorizeDataCacheTest
 
     public sealed class PlainType;
 }
+#pragma warning restore CA1034
