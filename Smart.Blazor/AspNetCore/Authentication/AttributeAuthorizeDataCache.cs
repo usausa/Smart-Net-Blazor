@@ -20,14 +20,14 @@ internal static class AttributeAuthorizeDataCache
     {
         var allAttributes = type.GetCustomAttributes(inherit: true);
         List<IAuthorizeData>? list = null;
-        for (var i = 0; i < allAttributes.Length; i++)
+        foreach (var attribute in allAttributes)
         {
-            if (allAttributes[i] is IAllowAnonymous)
+            if (attribute is IAllowAnonymous)
             {
                 return null;
             }
 
-            if (allAttributes[i] is IAuthorizeData authorizeData)
+            if (attribute is IAuthorizeData authorizeData)
             {
                 list ??= [];
                 list.Add(authorizeData);
