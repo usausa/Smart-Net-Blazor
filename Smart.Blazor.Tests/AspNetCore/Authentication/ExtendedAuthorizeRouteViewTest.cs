@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-#pragma warning disable CA1034
 public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
 {
     [Fact]
@@ -35,9 +34,7 @@ public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
     }
 
     [Authorize]
-    public sealed class SecurePage : ComponentBase
-    {
-    }
+    public sealed class SecurePage : ComponentBase;
 
     public sealed class DefaultTestLayout : LayoutComponentBase
     {
@@ -61,4 +58,3 @@ public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
         }
     }
 }
-#pragma warning restore CA1034
