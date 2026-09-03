@@ -1,6 +1,6 @@
 namespace Smart.AspNetCore.Components;
 
-public sealed class RangeTest : BunitContext
+public sealed class RangeTests : BunitContext
 {
     [Fact]
     public void RendersSequenceFromZero()

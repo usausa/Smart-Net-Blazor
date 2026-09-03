@@ -1,6 +1,6 @@
 namespace Smart.AspNetCore.Components;
 
-public sealed class ListItemTest : BunitContext
+public sealed class ListItemTests : BunitContext
 {
     private static readonly string[] Items = ["a", "b"];
 

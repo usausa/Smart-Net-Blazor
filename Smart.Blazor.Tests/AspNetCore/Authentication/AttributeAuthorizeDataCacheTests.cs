@@ -2,7 +2,7 @@ namespace Smart.AspNetCore.Authentication;
 
 using Microsoft.AspNetCore.Authorization;
 
-public sealed class AttributeAuthorizeDataCacheTest
+public sealed class AttributeAuthorizeDataCacheTests
 {
     [Fact]
     public void ReturnsAuthorizeDataForAuthorizedType()

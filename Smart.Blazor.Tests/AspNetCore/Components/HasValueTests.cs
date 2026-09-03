@@ -1,6 +1,6 @@
 namespace Smart.AspNetCore.Components;
 
-public sealed class HasValueTest : BunitContext
+public sealed class HasValueTests : BunitContext
 {
     [Fact]
     public void RendersChildContentWhenValuePresent()

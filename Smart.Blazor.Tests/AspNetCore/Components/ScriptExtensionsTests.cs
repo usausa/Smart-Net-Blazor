@@ -2,9 +2,9 @@ namespace Smart.AspNetCore.Components;
 
 using Microsoft.JSInterop;
 
-public sealed class ScriptExtensionsTest : BunitContext
+public sealed class ScriptExtensionsTests : BunitContext
 {
-    public ScriptExtensionsTest()
+    public ScriptExtensionsTests()
     {
         JSInterop.Mode = JSRuntimeMode.Loose;
     }

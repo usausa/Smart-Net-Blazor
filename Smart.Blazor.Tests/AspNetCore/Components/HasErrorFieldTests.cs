@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-public sealed class HasErrorFieldTest : BunitContext
+public sealed class HasErrorFieldTests : BunitContext
 {
     [Fact]
     public async Task RendersChildContentOnValidationStateChange()

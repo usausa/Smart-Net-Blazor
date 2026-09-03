@@ -1,6 +1,6 @@
 namespace Smart.AspNetCore.Components;
 
-public sealed class ConditionTest : BunitContext
+public sealed class ConditionTests : BunitContext
 {
     [Fact]
     public void RendersChildContentWhenValueIsTrue()

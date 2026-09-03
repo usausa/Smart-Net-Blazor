@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-public sealed class ExtendedAuthorizeRouteViewTest : BunitContext
+public sealed class ExtendedAuthorizeRouteViewTests : BunitContext
 {
     [Fact]
     public void NotAuthorizedFallsBackToDefaultLayoutWhenNotAuthorizedLayoutNotSet()

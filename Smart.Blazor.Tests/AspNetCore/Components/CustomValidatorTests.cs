@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-public sealed class CustomValidatorTest : BunitContext
+public sealed class CustomValidatorTests : BunitContext
 {
     [Fact]
     public void DisplayErrorWithExpressionAddsMessage()

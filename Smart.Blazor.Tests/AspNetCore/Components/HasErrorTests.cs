@@ -3,7 +3,7 @@ namespace Smart.AspNetCore.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-public sealed class HasErrorTest : BunitContext
+public sealed class HasErrorTests : BunitContext
 {
     [Fact]
     public async Task RendersChildContentOnValidationStateChange()
