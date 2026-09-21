@@ -19,6 +19,31 @@ public sealed class ScriptExtensionsTests : BunitContext
     }
 
     [Fact]
+    public async Task HistoryBackInvokesJs()
+    {
+        await JSInterop.JSRuntime.HistoryBack();
+
+        JSInterop.VerifyInvoke("history.back");
+    }
+
+    [Fact]
+    public async Task HistoryForwardInvokesJs()
+    {
+        await JSInterop.JSRuntime.HistoryForward();
+
+        JSInterop.VerifyInvoke("history.forward");
+    }
+
+    [Fact]
+    public async Task HistoryGoInvokesJsWithDelta()
+    {
+        await JSInterop.JSRuntime.HistoryGo(-2);
+
+        var invocation = JSInterop.VerifyInvoke("history.go");
+        Assert.Equal(-2, invocation.Arguments[0]);
+    }
+
+    [Fact]
     public async Task SaveAsFileInvokesJsWithStreamReference()
     {
         await JSInterop.JSRuntime.SaveAsFile("file.txt", "text/plain", [1, 2, 3]);

@@ -7,6 +7,15 @@ public static class ScriptExtensions
     public static ValueTask SetFocus(this IJSRuntime runtime, string id) =>
         runtime.InvokeVoidAsync("Smart.setFocus", id);
 
+    public static ValueTask HistoryBack(this IJSRuntime runtime) =>
+        runtime.InvokeVoidAsync("history.back");
+
+    public static ValueTask HistoryForward(this IJSRuntime runtime) =>
+        runtime.InvokeVoidAsync("history.forward");
+
+    public static ValueTask HistoryGo(this IJSRuntime runtime, int delta) =>
+        runtime.InvokeVoidAsync("history.go", delta);
+
     public static async ValueTask SaveAsFile(this IJSRuntime runtime, string filename, string contentType, byte[] bytes)
     {
         using var stream = new MemoryStream(bytes);

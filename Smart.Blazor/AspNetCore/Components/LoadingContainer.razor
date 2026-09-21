@@ -1,0 +1,38 @@
+@typeparam TElement
+
+@switch (Status)
+{
+    case LoadingStatus.Loading:
+        @LoadingContent
+        break;
+    case LoadingStatus.Loaded:
+        @ChildContent(Value)
+        break;
+    case LoadingStatus.Failed:
+        @FailedContent
+        break;
+    default:
+        @NotLoadedContent
+        break;
+}
+
+@code {
+    [EditorRequired]
+    [Parameter]
+    public LoadingStatus Status { get; set; }
+
+    [Parameter]
+    public TElement Value { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment<TElement> ChildContent { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? NotLoadedContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? LoadingContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? FailedContent { get; set; }
+}
