@@ -13,5 +13,4 @@
   </Folder>
   <Project Path="Smart.Blazor/Smart.Blazor.csproj" />
   <Project Path="Smart.Blazor.Tests/Smart.Blazor.Tests.csproj" />
-  <Project Path="Example.BlazorWasm/Example.BlazorWasm.csproj" />
 </Solution>
