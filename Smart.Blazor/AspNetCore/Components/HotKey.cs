@@ -113,8 +113,6 @@ public sealed class HotKey : ComponentBase, IAsyncDisposable
     {
         public static Options Create(string value, bool preventDefault, bool allowInInput, bool allowRepeat)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(value);
-
             var parts = value.Split('+', StringSplitOptions.TrimEntries);
             var ctrl = false;
             var alt = false;

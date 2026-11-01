@@ -28,9 +28,6 @@ public sealed class ScriptModule : IAsyncDisposable
 
     public ScriptModule(IJSRuntime runtime, string path)
     {
-        ArgumentNullException.ThrowIfNull(runtime);
-        ArgumentException.ThrowIfNullOrEmpty(path);
-
         this.runtime = runtime;
         Path = path;
     }
@@ -88,7 +85,7 @@ public sealed class ScriptModule : IAsyncDisposable
             call.Fail(exception);
         }
 
-        return loaded is not null ? loaded.ReleaseAsync() : ValueTask.CompletedTask;
+        return loaded?.ReleaseAsync() ?? ValueTask.CompletedTask;
     }
 
     private async Task LoadAsync()
