@@ -1,0 +1,74 @@
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@implements IDisposable
+
+<NavigationLock ConfirmExternalNavigation="@(ConfirmExternalNavigation && modified)" OnBeforeInternalNavigation="HandleBeforeInternalNavigation" />
+
+@code {
+    private EditContext? subscribedEditContext;
+
+    private bool modified;
+
+    [CascadingParameter]
+    private EditContext? EditContext { get; set; }
+
+    [Parameter]
+    public Func<Task<bool>>? OnConfirm { get; set; }
+
+    [Parameter]
+    public bool ConfirmExternalNavigation { get; set; } = true;
+
+    protected override void OnParametersSet()
+    {
+        if (EditContext is null)
+        {
+            throw new InvalidOperationException($"{nameof(EditContext)} is required.");
+        }
+
+        if (!ReferenceEquals(EditContext, subscribedEditContext))
+        {
+            Unsubscribe();
+            subscribedEditContext = EditContext;
+            subscribedEditContext.OnFieldChanged += HandleFieldChanged;
+        }
+
+        modified = EditContext.IsModified();
+    }
+
+    public void Dispose()
+    {
+        Unsubscribe();
+    }
+
+    private void Unsubscribe()
+    {
+        if (subscribedEditContext is not null)
+        {
+            subscribedEditContext.OnFieldChanged -= HandleFieldChanged;
+            subscribedEditContext = null;
+        }
+    }
+
+    private void HandleFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        var current = subscribedEditContext?.IsModified() ?? false;
+        if (current != modified)
+        {
+            modified = current;
+            StateHasChanged();
+        }
+    }
+
+    private async Task HandleBeforeInternalNavigation(LocationChangingContext context)
+    {
+        if ((subscribedEditContext is null) || !subscribedEditContext.IsModified() || (OnConfirm is null))
+        {
+            return;
+        }
+
+        if (!await OnConfirm())
+        {
+            context.PreventNavigation();
+        }
+    }
+}

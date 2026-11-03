@@ -8,6 +8,7 @@
 * `CustomValidator` — custom validation component for Blazor forms
 * `EditContextExtensions` — notify field changes by field name
 * `LoadingContainer` — render content by loading status
+* `ModifiedNavigationLock` — confirm leaving a form with changes
 
 ## Usage
 
@@ -34,3 +35,13 @@ editContext.NotifyFieldsChanged(nameof(Model.Name), nameof(Model.Email));
 ```
 
 `Status` is one of `NotLoaded`, `Loading`, `Loaded` and `Failed`. `ChildContent` receives `Value` when `Loaded`.
+
+### ModifiedNavigationLock
+
+```razor
+<EditForm EditContext="editContext" OnValidSubmit="SaveAsync">
+    <ModifiedNavigationLock OnConfirm="ConfirmLeaveAsync" />
+</EditForm>
+```
+
+While the `EditContext` of the form is modified, navigating to another page of the app calls `OnConfirm`, and the navigation is canceled when it returns `false`. Without `OnConfirm`, the navigation goes on. `ConfirmExternalNavigation` (`true` by default) asks the browser to confirm closing the tab, reloading or going to another site while the form is modified. Call `editContext.MarkAsUnmodified()` after saving.
