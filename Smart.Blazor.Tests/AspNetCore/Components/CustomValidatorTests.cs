@@ -82,14 +82,14 @@ public sealed class CustomValidatorTests : BunitContext
     }
 
     [Fact]
-    public void ValidationRequestedClearsMessages()
+    public async Task ValidationRequestedClearsMessages()
     {
         var model = new TestModel();
         var editContext = new EditContext(model);
         var validator = RenderValidator(editContext).Instance;
         validator.DisplayError(nameof(TestModel.Name), "error");
 
-        editContext.Validate();
+        await editContext.ValidateAsync();
 
         Assert.Empty(editContext.GetValidationMessages());
     }
