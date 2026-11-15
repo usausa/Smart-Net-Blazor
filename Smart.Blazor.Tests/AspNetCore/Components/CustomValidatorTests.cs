@@ -89,7 +89,7 @@ public sealed class CustomValidatorTests : BunitContext
         var validator = RenderValidator(editContext).Instance;
         validator.DisplayError(nameof(TestModel.Name), "error");
 
-        await editContext.ValidateAsync();
+        await editContext.ValidateAsync(Xunit.TestContext.Current.CancellationToken);
 
         Assert.Empty(editContext.GetValidationMessages());
     }
